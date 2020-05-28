@@ -19,7 +19,7 @@
     <?php include('menu.php') ?>
     <div class="row">
       <div class="container">
-        <div class="row my-2 d-none d-md-block">
+        <div class="row my-2 d-none">
           <div class="col text-center">
             <img src="https://via.placeholder.com/920x90?text=Ads%20920x90" alt="" class="img-fluid">
           </div>
