@@ -1,4 +1,35 @@
 @import colors
 
+[v-cloak]
+  display: none
+
 body
-  background-color: red
+  font-family: 'Roboto', sans-serif
+
+.title, .card .card-title
+  font-family: 'Raleway', sans-serif
+  font-weight: bold
+
+.subtitle
+  border-bottom: 2px solid #212529
+  font-weight: bold
+  padding-bottom: .5rem
+  &.red
+    border-bottom-color: #EF0004
+  &.blue
+    border-bottom-color: #1A75BC
+
+.text-red
+  color: #EF0004 !important
+
+.text-blue
+  color: #1A75BC !important
+
+.card
+  .card-title
+    color: #212529
+
+a
+  color: #212529
+  &:hover
+    color: #212529

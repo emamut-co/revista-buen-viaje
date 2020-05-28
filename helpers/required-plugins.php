@@ -8,11 +8,6 @@ function my_theme_register_required_plugins()
   $plugins = array(
 
     array(
-      'name'      => 'CodePress Admin Columns',
-      'slug'      => 'codepress-admin-columns',
-      'required'  => true
-    ),
-    array(
       'name'      => 'MetaBox',
       'slug'      => 'meta-box',
       'required'  => true

@@ -10,10 +10,19 @@
   </head>
   <body>
     <script>
-      wp_content = '<?php echo WP_CONTENT_URL ?>';
       myTheme = '<?php echo get_template_directory_uri() ?>';
     </script>
 
     <?php $url = ''; if(!is_home()) $url = get_site_url(); ?>
 
-    <div ng-view>
+    <div class="container-fluid mb-1" id="app">
+    <?php include('menu.php') ?>
+    <div class="row">
+      <div class="container">
+        <div class="row my-2 d-none d-md-block">
+          <div class="col text-center">
+            <img src="https://via.placeholder.com/920x90?text=Ads%20920x90" alt="" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
