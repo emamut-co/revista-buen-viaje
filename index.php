@@ -13,7 +13,15 @@ $args = array(
   'posts_per_page' => 4,
 );
 
-$noticiasNacionales = new WP_Query($args); ?>
+$noticiasNacionales = new WP_Query($args);
+
+$args = array(
+  'category_id' => 31,
+  'posts_per_page' => 4,
+);
+
+$carroceros = new WP_Query($args);
+?>
 
 <section class="bg-light p-4">
   <div class="container">
@@ -55,7 +63,7 @@ $noticiasNacionales = new WP_Query($args); ?>
                 <div class="card-body px-0">
                   <p class="card-title"><strong><?php the_title() ?></strong><br>
                   <!-- <span class="badge badge-primary">Ceda el paso</span> <span class="badge badge-warning">Chóferes</span> -->
-                  <p class="card-text"><small class="muted"><i class="far fa-clock"></i> Publicado: 15 de mayo de 2020</small><br>
+                  <p class="card-text"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php the_time('d \d\e F Y g:i'); ?></small><br>
                   <?php the_excerpt() ?></p>
                   <p class="text-right text-muted"><a href="<?php the_permalink() ?>"><small>Leer más <i class="fa fa-angle-double-right"></i></small></a></p>
                 </div>
@@ -71,19 +79,20 @@ $noticiasNacionales = new WP_Query($args); ?>
             </div>
           </div>
           <div class="row row-cols-1 row-cols-md-2 mt-4">
-            <div class="col mb-4" v-for="n in 4">
+            <?php while ( $carroceros->have_posts() ) : $carroceros->the_post(); ?>
+            <div class="col mb-4">
               <div class="card border-0">
-                <img src="https://unsplash.it/400/300?random&blur&gravity=center" alt="" class="card-img-top">
+                <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
                 <div class="card-body text-white px-0 bg-dark">
-                  <p class="card-title text-white"><strong>Velit anim velit occaecat id non proident labore sunt do.</strong><br>
-                  <span class="badge badge-primary">Ceda el paso</span> <span class="badge badge-warning">Chóferes</span></p>
-                  <p class="card-text"><small class="muted"><i class="far fa-clock"></i> Publicado: 15 de mayo de 2020</small><br>
-                    Elit labore ullamco cillum commodo tempor. Irure ut pariatur adipisicing ea sit adipisicing elit ex quis
-                    adipisicing.</p>
+                  <p class="card-title text-white"><strong><?php the_title() ?></strong><br>
+                  <!-- <span class="badge badge-primary">Ceda el paso</span> <span class="badge badge-warning">Chóferes</span></p> -->
+                  <p class="card-text"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php the_time('d \d\e F Y g:i'); ?></small><br>
+                    <?php the_excerpt() ?></p>
                   <p class="text-right text-muted"><a href="#"><small class="text-secondary">Leer más <i class="fa fa-angle-double-right"></i></small></a></p>
                 </div>
               </div>
             </div>
+            <?php endwhile ?>
           </div>
         </section>
         <section class="p-4">
@@ -102,7 +111,7 @@ $noticiasNacionales = new WP_Query($args); ?>
                   <p class="card-text"><small class="muted"><i class="far fa-clock"></i> Publicado: 15 de mayo de 2020</small><br>
                     Elit labore ullamco cillum commodo tempor. Irure ut pariatur adipisicing ea sit adipisicing elit ex quis
                     adipisicing.</p>
-                  <p class="text-right text-muted"><a href="./single.php"><small>Leer más <i class="fa fa-angle-double-right"></i></small></a></p>
+                  <p class="text-right text-muted"><a href="<?php the_permalink() ?>"><small>Leer más <i class="fa fa-angle-double-right"></i></small></a></p>
                 </div>
               </div>
             </div>
