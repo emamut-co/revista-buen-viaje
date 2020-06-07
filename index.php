@@ -1,40 +1,14 @@
 <?php get_header();
 
-$args = array(
-  'category_id' => 30,
-  'posts_per_page' => 3,
-);
-
-$result = new WP_Query($args);
-$articuloCentralArray = $result->posts;
-
-$args = array(
-  'category_id' => 15,
-  'posts_per_page' => 4,
-);
-
-$noticiasNacionales = new WP_Query($args);
-
-$args = array(
-  'category_id' => 31,
-  'posts_per_page' => 4,
-);
-
-$carroceros = new WP_Query($args);
-
-$args = array(
-  'category_id' => 54,
-  'posts_per_page' => 4,
-);
-
-$sobreLaMarcha = new WP_Query($args);
-?>
+$do_not_duplicate = array();
+$result = new WP_Query('category_id=30&posts_per_page=3');
+$articuloCentralArray = $result->posts; ?>
 
 <section class="bg-light p-4">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <h2 class="title"><?php echo $articuloCentralArray[0]->post_title ?></h2>
+        <h2 class="title"><?php echo $articuloCentralArray[0]->post_title; $do_not_duplicate[] = $articuloCentralArray[0]->ID ?></h2>
         <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[0]->ID, 'full') ?>' class="img-fluid mt-2" alt='' />
         <p class="card-text mt-3"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php echo date_i18n('d \d\e F Y g:i', strtotime($articuloCentralArray[0]->post_date)) ?></small><br>
         <?php echo !empty($articuloCentralArray[0]->excerpt) ? $articuloCentralArray[0]->excerpt : substr($articuloCentralArray[0]->post_content, 0, 250) . ' ...' ?></small></p>
@@ -43,10 +17,10 @@ $sobreLaMarcha = new WP_Query($args);
       <div class="col-md-4">
         <input class="form-control mb-4" type="text" placeholder="Buscar...">
         <img src="<?php echo get_template_directory_uri() ?>/img/logo-articulo-central.png" alt="" class="img-fluid">
-        <a href="./single.php"><h5 class="title mt-4"><?php echo $articuloCentralArray[1]->post_title ?></h5></a>
+        <a href="./single.php"><h5 class="title mt-4"><?php echo $articuloCentralArray[1]->post_title; $do_not_duplicate[] = $articuloCentralArray[1]->ID ?></h5></a>
         <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[1]->ID, 'full') ?>' class="img-fluid mt-" alt='' />
 
-        <a href="./single.php"><h5 class="title mt-5"><?php echo $articuloCentralArray[2]->post_title ?></h5></a>
+        <a href="./single.php"><h5 class="title mt-5"><?php echo $articuloCentralArray[2]->post_title; $do_not_duplicate[] = $articuloCentralArray[2]->ID ?></h5></a>
         <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[2]->ID, 'full') ?>' class="img-fluid mt-" alt='' />
       </div>
     </div>
@@ -63,7 +37,8 @@ $sobreLaMarcha = new WP_Query($args);
             </div>
           </div>
           <div class="row row-cols-1 row-cols-md-2 mt-4">
-            <?php while ( $noticiasNacionales->have_posts() ) : $noticiasNacionales->the_post(); ?>
+            <?php $noticiasNacionales = new WP_Query(array('category_id' => 151, 'posts_per_page' => 4, 'post__not_in' => $do_not_duplicate));
+            while ( $noticiasNacionales->have_posts() ) : $noticiasNacionales->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
             <div class="col mb-4">
               <div class="card border-0">
                 <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
@@ -76,7 +51,7 @@ $sobreLaMarcha = new WP_Query($args);
                 </div>
               </div>
             </div>
-            <?php endwhile ?>
+            <?php endwhile; wp_reset_postdata() ?>
           </div>
         </section>
         <section class="p-4 bg-dark">
@@ -86,7 +61,8 @@ $sobreLaMarcha = new WP_Query($args);
             </div>
           </div>
           <div class="row row-cols-1 row-cols-md-2 mt-4">
-            <?php while ( $carroceros->have_posts() ) : $carroceros->the_post(); ?>
+            <?php $carroceros = new WP_Query(array('category_id' => 31, 'posts_per_page' => 4, 'post__not_in' => $do_not_duplicate));
+            while ( $carroceros->have_posts() ) : $carroceros->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
             <div class="col mb-4">
               <div class="card border-0">
                 <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
@@ -99,7 +75,7 @@ $sobreLaMarcha = new WP_Query($args);
                 </div>
               </div>
             </div>
-            <?php endwhile ?>
+            <?php endwhile; wp_reset_postdata() ?>
           </div>
         </section>
         <section class="p-4">
@@ -109,7 +85,8 @@ $sobreLaMarcha = new WP_Query($args);
             </div>
           </div>
           <div class="row row-cols-1 row-cols-md-2 mt-4">
-            <?php while ( $sobreLaMarcha->have_posts() ) : $sobreLaMarcha->the_post(); ?>
+            <?php $sobreLaMarcha = new WP_Query(array('category_id' => 54, 'posts_per_page' => 4, 'post__not_in' => $do_not_duplicate));
+            while ( $sobreLaMarcha->have_posts() ) : $sobreLaMarcha->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
             <div class="col mb-4">
               <div class="card border-0">
                 <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
@@ -122,7 +99,7 @@ $sobreLaMarcha = new WP_Query($args);
                 </div>
               </div>
             </div>
-            <?php endwhile ?>
+            <?php endwhile; wp_reset_postdata() ?>
           </div>
         </section>
       </div>
