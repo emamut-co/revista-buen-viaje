@@ -8,10 +8,10 @@ $articuloCentralArray = $result->posts; ?>
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <h2 class="title"><?php echo $articuloCentralArray[0]->post_title; $do_not_duplicate[] = $articuloCentralArray[0]->ID ?></h2>
+        <a href="<?php echo get_permalink($articuloCentralArray[0]->ID) ?>"><h2 class="title"><?php echo $articuloCentralArray[0]->post_title; $do_not_duplicate[] = $articuloCentralArray[0]->ID ?></h2></a>
         <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[0]->ID, 'full') ?>' class="img-fluid mt-2" alt='' />
         <p class="card-text mt-3"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php echo date_i18n('d \d\e F Y g:i', strtotime($articuloCentralArray[0]->post_date)) ?></small><br>
-        <?php echo !empty($articuloCentralArray[0]->excerpt) ? $articuloCentralArray[0]->excerpt : substr($articuloCentralArray[0]->post_content, 0, 250) . ' ...' ?></small></p>
+        <?php echo get_the_excerpt($articuloCentralArray[0]->ID) ?></small></p>
         <p class="text-right text-muted"><a href="<?php echo get_permalink($articuloCentralArray[0]->ID) ?>"><small>Leer más <i class="fa fa-angle-double-right"></i></small></a></p>
       </div>
       <div class="col-md-4">
@@ -37,14 +37,13 @@ $articuloCentralArray = $result->posts; ?>
             </div>
           </div>
           <div class="row row-cols-1 row-cols-md-2 mt-4">
-            <?php $noticiasNacionales = new WP_Query(array('category_name' => 'noticias-nacionales', 'posts_per_page' => 4, 'post__not_in' => $do_not_duplicate));
+            <?php $noticiasNacionales = new WP_Query(array('category_name' => 'alcance-nacional', 'posts_per_page' => 4, 'post__not_in' => $do_not_duplicate));
             while ( $noticiasNacionales->have_posts() ) : $noticiasNacionales->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
             <div class="col mb-4">
               <div class="card border-0">
                 <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
                 <div class="card-body px-0">
-                  <p class="card-title"><strong><?php the_title() ?></strong><br>
-                  <!-- <span class="badge badge-primary">Ceda el paso</span> <span class="badge badge-warning">Chóferes</span> -->
+                  <a class="card-title" href="<?php the_permalink() ?>"><strong><?php the_title() ?></strong></a>
                   <p class="card-text"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php the_time('d \d\e F Y g:i'); ?></small><br>
                   <?php the_excerpt() ?></p>
                   <p class="text-right text-muted"><a href="<?php the_permalink() ?>"><small>Leer más <i class="fa fa-angle-double-right"></i></small></a></p>
@@ -67,8 +66,7 @@ $articuloCentralArray = $result->posts; ?>
               <div class="card border-0">
                 <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
                 <div class="card-body text-white px-0 bg-dark">
-                  <p class="card-title text-white"><strong><?php the_title() ?></strong><br>
-                  <!-- <span class="badge badge-primary">Ceda el paso</span> <span class="badge badge-warning">Chóferes</span></p> -->
+                  <a class="card-title text-white" href="<?php the_permalink() ?>"><strong><?php the_title() ?></strong></a>
                   <p class="card-text"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php the_time('d \d\e F Y g:i'); ?></small><br>
                     <?php the_excerpt() ?></p>
                   <p class="text-right text-muted"><a href="<?php the_permalink() ?>"><small class="text-secondary">Leer más <i class="fa fa-angle-double-right"></i></small></a></p>
@@ -91,8 +89,7 @@ $articuloCentralArray = $result->posts; ?>
               <div class="card border-0">
                 <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
                 <div class="card-body px-0">
-                  <p class="card-title"><strong><?php the_title() ?></strong><br>
-                  <!-- <span class="badge badge-primary">Ceda el paso</span> <span class="badge badge-warning">Chóferes</span> -->
+                  <a class="card-title" href="<?php the_permalink() ?>"><strong><?php the_title() ?></strong></a>
                   <p class="card-text"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php the_time('d \d\e F Y g:i'); ?></small><br>
                   <?php the_excerpt() ?></p>
                   <p class="text-right text-muted"><a href="<?php the_permalink() ?>"><small>Leer más <i class="fa fa-angle-double-right"></i></small></a></p>

@@ -7,15 +7,17 @@
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="<?php echo get_site_url() ?>">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contáctenos</a>
-        </li>
-      </ul>
-    </div>
+    <?php
+      wp_nav_menu( array(
+        'theme_location'    => 'primary',
+        'depth'             => 2,
+        'container'         => 'div',
+        'container_class'   => 'collapse navbar-collapse',
+        'container_id'      => 'bs-example-navbar-collapse-1',
+        'menu_class'        => 'nav navbar-nav ml-auto',
+        'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+        'walker'            => new WP_Bootstrap_Navwalker(),
+      ) );
+    ?>
   </div>
 </nav>
