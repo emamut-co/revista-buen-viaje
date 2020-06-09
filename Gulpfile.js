@@ -20,7 +20,7 @@ function style() {
 
 function watch() {
   browserSync.init({
-    proxy: 'http://localhost/workspace/revista-buen-viaje/',
+    proxy: 'http://localhost/revista-buen-viaje/',
     open: false
   });
   gulp.watch('src/sass/**/*.sass', style)
