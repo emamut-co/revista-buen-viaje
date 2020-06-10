@@ -100,8 +100,10 @@ $articuloCentralArray = $result->posts; ?>
           </div>
         </section>
       </div>
-      <div class="col-md-4 pt-4 d-none">
-        <img src="https://via.placeholder.com/500?text=Ads%20500x500" alt="" class="img-fluid mt-4">
+      <div class="col-md-4 pt-4">
+        <?php if ( is_active_sidebar( 'custom-side-bar' ) ) : ?>
+          <?php dynamic_sidebar( 'custom-side-bar' ); ?>
+        <?php endif; ?>
       </div>
     </div>
   </div>
