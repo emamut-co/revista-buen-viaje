@@ -3,8 +3,8 @@
     <a class="navbar-brand" href="<?php echo get_site_url() ?>">
       <img src="<?php echo get_template_directory_uri() ?>/img/LOGO_BV_27ANOS.gif" class="img-fluid" alt="" id="logo">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+      aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <?php

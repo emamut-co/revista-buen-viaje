@@ -4,25 +4,23 @@ $do_not_duplicate = array();
 $result = new WP_Query("category_name='articulo-central'&posts_per_page=3");
 $articuloCentralArray = $result->posts; ?>
 
-<section class="bg-light p-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <a href="<?php echo get_permalink($articuloCentralArray[0]->ID) ?>"><h2 class="title"><?php echo $articuloCentralArray[0]->post_title; $do_not_duplicate[] = $articuloCentralArray[0]->ID ?></h2></a>
-        <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[0]->ID, 'full') ?>' class="img-fluid mt-2" alt='' />
-        <p class="card-text mt-3"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php echo date_i18n('d \d\e F Y g:i', strtotime($articuloCentralArray[0]->post_date)) ?></small><br>
-        <?php echo get_the_excerpt($articuloCentralArray[0]->ID) ?></small></p>
-        <p class="text-right text-muted"><a href="<?php echo get_permalink($articuloCentralArray[0]->ID) ?>"><small>Leer más <i class="fa fa-angle-double-right"></i></small></a></p>
-      </div>
-      <div class="col-md-4">
-        <input class="form-control mb-4" type="text" placeholder="Buscar...">
-        <img src="<?php echo get_template_directory_uri() ?>/img/logo-articulo-central.png" alt="" class="img-fluid">
-        <a href="<?php echo get_permalink($articuloCentralArray[1]->ID) ?>"><h5 class="title mt-4"><?php echo $articuloCentralArray[1]->post_title; $do_not_duplicate[] = $articuloCentralArray[1]->ID ?></h5></a>
-        <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[1]->ID, 'full') ?>' class="img-fluid mt-" alt='' />
+<section class="container p-4 bg-light">
+  <div class="row">
+    <div class="col-md-8">
+      <a href="<?php echo get_permalink($articuloCentralArray[0]->ID) ?>"><h2 class="title"><?php echo $articuloCentralArray[0]->post_title; $do_not_duplicate[] = $articuloCentralArray[0]->ID ?></h2></a>
+      <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[0]->ID, 'full') ?>' class="img-fluid mt-2" alt='' />
+      <p class="card-text mt-3"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php echo date_i18n('d \d\e F Y g:i', strtotime($articuloCentralArray[0]->post_date)) ?></small><br>
+      <?php echo get_the_excerpt($articuloCentralArray[0]->ID) ?></small></p>
+      <p class="text-right text-muted"><a href="<?php echo get_permalink($articuloCentralArray[0]->ID) ?>"><small>Leer más <i class="fa fa-angle-double-right"></i></small></a></p>
+    </div>
+    <div class="col-md-4">
+      <input class="form-control mb-4" type="text" placeholder="Buscar...">
+      <img src="<?php echo get_template_directory_uri() ?>/img/logo-articulo-central.png" alt="" class="img-fluid">
+      <a href="<?php echo get_permalink($articuloCentralArray[1]->ID) ?>"><h5 class="title mt-4"><?php echo $articuloCentralArray[1]->post_title; $do_not_duplicate[] = $articuloCentralArray[1]->ID ?></h5></a>
+      <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[1]->ID, 'full') ?>' class="img-fluid mt-" alt='' />
 
-        <a href="<?php echo get_permalink($articuloCentralArray[2]->ID) ?>"><h5 class="title mt-5"><?php echo $articuloCentralArray[2]->post_title; $do_not_duplicate[] = $articuloCentralArray[2]->ID ?></h5></a>
-        <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[2]->ID, 'full') ?>' class="img-fluid mt-" alt='' />
-      </div>
+      <a href="<?php echo get_permalink($articuloCentralArray[2]->ID) ?>"><h5 class="title mt-5"><?php echo $articuloCentralArray[2]->post_title; $do_not_duplicate[] = $articuloCentralArray[2]->ID ?></h5></a>
+      <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[2]->ID, 'full') ?>' class="img-fluid mt-" alt='' />
     </div>
   </div>
 </section>
