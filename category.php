@@ -22,11 +22,6 @@
         </div>
         <div class="row">
           <div class="col">
-            <?php echo do_shortcode('jetpack-related-posts') ?>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
             <?php emamut_numeric_posts_nav(); ?>
           </div>
         </div>
