@@ -1,42 +1,44 @@
 <?php get_header();
 
 $do_not_duplicate = array();
-$result = new WP_Query("category_name='articulo-central'&posts_per_page=3");
-$articuloCentralArray = $result->posts;
+$sticky = get_option( 'sticky_posts' );
 
-shuffle($articuloCentralArray) ?>
+$articuloCentralArray = new WP_Query(
+  array(
+    'post_type'           => 'post',
+    'post__in'            => $sticky,
+    'posts_per_page'      => 4,
+    'orderby'             => 'rand',
+    'ignore_sticky_posts' => 1
+  )
+); ?>
 
 <section class="container p-4 bg-light">
   <div class="row">
     <div class="col-md-8">
-      <a href="<?php echo get_permalink($articuloCentralArray[0]->ID) ?>">
-        <h2 class="title"><?php echo $articuloCentralArray[0]->post_title; $do_not_duplicate[] = $articuloCentralArray[0]->ID ?></h2>
+      <a href="<?php echo get_permalink($articuloCentralArray->posts[0]->ID) ?>">
+        <h2 class="title"><?php echo $articuloCentralArray->posts[0]->post_title ?></h2>
       </a>
-      <a href="<?php echo get_permalink($articuloCentralArray[0]->ID) ?>">
-        <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[0]->ID, 'full') ?>' class="img-fluid mt-2" alt='' />
+      <a href="<?php echo get_permalink($articuloCentralArray->posts[0]->ID) ?>">
+        <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray->posts[0]->ID, 'full') ?>' class="img-fluid mt-2" alt='' />
       </a>
       <p class="card-text mt-3">
-        <small class="muted"><i class="far fa-clock"></i> Publicado: <?php echo date_i18n('d \d\e F Y g:i', strtotime($articuloCentralArray[0]->post_date)) ?></small><br>
-        <?php echo get_the_excerpt($articuloCentralArray[0]->ID) ?></small></p>
+        <small class="muted"><i class="far fa-clock"></i> Publicado: <?php echo date_i18n('d \d\e F Y g:i', strtotime($articuloCentralArray->posts[0]->post_date)) ?></small><br>
+        <?php echo get_the_excerpt($articuloCentralArray->posts[0]->ID) ?></small></p>
       </p>
     </div>
     <div class="col-md-4">
       <!-- <input class="form-control mb-4" type="text" placeholder="Buscar..."> -->
-      <img src="<?php echo get_template_directory_uri() ?>/img/logo-articulo-central.png" alt="" class="img-fluid">
+      <!-- <img src="<?php echo get_template_directory_uri() ?>/img/logo-articulo-central.png" alt="" class="img-fluid"> -->
 
-      <a href="<?php echo get_permalink($articuloCentralArray[1]->ID) ?>">
-        <h5 class="title mt-4"><?php echo $articuloCentralArray[1]->post_title; $do_not_duplicate[] = $articuloCentralArray[1]->ID ?></h5>
-      </a>
-      <a href="<?php echo get_permalink($articuloCentralArray[1]->ID) ?>">
-        <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[1]->ID, 'full') ?>' class="img-fluid mt-" alt='' />
-      </a>
+      <?php unset($articuloCentralArray->posts[0]);
 
-      <a href="<?php echo get_permalink($articuloCentralArray[2]->ID) ?>">
-        <h5 class="title mt-5"><?php echo $articuloCentralArray[2]->post_title; $do_not_duplicate[] = $articuloCentralArray[2]->ID ?></h5>
+      while ( $articuloCentralArray->have_posts() ) : $articuloCentralArray->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
+      <a href="<?php the_permalink() ?>">
+        <h5 class="title"><?php the_title(); $do_not_duplicate[] = get_the_ID() ?></h5>
+        <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
       </a>
-      <a href="<?php echo get_permalink($articuloCentralArray[2]->ID) ?>">
-        <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray[2]->ID, 'full') ?>' class="img-fluid mt-" alt='' />
-      </a>
+      <?php endwhile ?>
     </div>
   </div>
 </section>
