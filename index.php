@@ -7,7 +7,7 @@ $articuloCentralArray = new WP_Query(
   array(
     'post_type'           => 'post',
     'post__in'            => $sticky,
-    'posts_per_page'      => 4,
+    'posts_per_page'      => 3,
     'orderby'             => 'rand',
     'ignore_sticky_posts' => 1
   )
@@ -28,16 +28,16 @@ $articuloCentralArray = new WP_Query(
       </p>
     </div>
     <div class="col-md-4">
-      <!-- <input class="form-control mb-4" type="text" placeholder="Buscar..."> -->
       <!-- <img src="<?php echo get_template_directory_uri() ?>/img/logo-articulo-central.png" alt="" class="img-fluid"> -->
-
       <?php unset($articuloCentralArray->posts[0]);
 
       while ( $articuloCentralArray->have_posts() ) : $articuloCentralArray->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
-      <a href="<?php the_permalink() ?>">
-        <h5 class="title"><?php the_title(); $do_not_duplicate[] = get_the_ID() ?></h5>
-        <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
-      </a>
+        <div class="mb-4">
+          <a href="<?php the_permalink() ?>">
+            <h5 class="title"><?php the_title(); $do_not_duplicate[] = get_the_ID() ?></h5>
+            <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
+          </a>
+        </div>
       <?php endwhile ?>
     </div>
   </div>
