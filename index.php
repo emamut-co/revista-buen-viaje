@@ -31,6 +31,7 @@ $articuloCentralArray = new WP_Query(
     <div class="col-md-4">
       <!-- <img src="<?php echo get_template_directory_uri() ?>/img/logo-articulo-central.png" alt="" class="img-fluid"> -->
       <?php unset($articuloCentralArray->posts[0]);
+      $articuloCentralArray->posts = array_values($articuloCentralArray->posts);
 
       while ( $articuloCentralArray->have_posts() ) : $articuloCentralArray->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
         <div class="mb-4">
