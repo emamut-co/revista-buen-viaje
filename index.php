@@ -7,7 +7,7 @@ $articuloCentralArray = new WP_Query(
   array(
     'post_type'           => 'post',
     'post__in'            => $sticky,
-    'post_status'         => array('publish'),
+    'post_status'         => 'publish',
     'posts_per_page'      => 3,
     'orderby'             => 'rand',
     'ignore_sticky_posts' => 1
