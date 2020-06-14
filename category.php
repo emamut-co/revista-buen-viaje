@@ -1,7 +1,7 @@
 <?php get_header();
 
 $term = get_queried_object();
-$image = get_field('imagen', $term) ?>
+$image = get_field('imagen', $term); ?>
 
 <div class="container">
   <div class="row mt-3">

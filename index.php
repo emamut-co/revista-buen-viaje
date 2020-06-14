@@ -12,7 +12,14 @@ $articuloCentralArray = new WP_Query(
     'orderby'             => 'rand',
     'ignore_sticky_posts' => 1
   )
-); ?>
+);
+
+$args = array(
+  'taxonomy' => 'category',
+  'hide_empty' => 0
+);
+$categoriesArray = get_categories($args);
+$isDark = false ?>
 
 <section class="container p-4 bg-light">
   <div class="row">
@@ -52,74 +59,34 @@ $articuloCentralArray = new WP_Query(
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <section class="p-4">
-          <div class="row mt-4">
-            <div class="col">
-              <img src="<?php echo get_template_directory_uri() ?>/img/logo-noticias-nacionales.png" alt="" class="img-fluid">
-            </div>
-          </div>
-          <div class="row row-cols-1 row-cols-md-2 mt-4">
-            <?php $noticiasNacionales = new WP_Query(array('category_name' => 'alcance-nacional', 'posts_per_page' => 4, 'post__not_in' => $do_not_duplicate));
-            while ( $noticiasNacionales->have_posts() ) : $noticiasNacionales->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
-            <div class="col mb-4">
-              <div class="card border-0">
-                <a href="<?php the_permalink() ?>"><?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?></a>
-                <div class="card-body px-0">
-                  <a href="<?php the_permalink() ?>">
-                    <h4 class="card-title"><?php the_title() ?></h4>
-                  </a>
+        <?php foreach($categoriesArray as $category):
+          if(get_field('home', $category)):
+            $image = get_field('imagen', $category); ?>
+            <section class="p-4 mb-4 <?php if($isDark) echo 'bg-dark' ?>">
+              <div class="row">
+                <div class="col">
+                  <a href="<?php echo get_site_url() . '/category/' . $category->slug ?>"><img src="<?php echo $image['url'] ?>" alt="" class="img-fluid"></a>
                 </div>
               </div>
-            </div>
-            <?php endwhile; wp_reset_postdata() ?>
-          </div>
-        </section>
-        <section class="p-4 bg-dark">
-          <div class="row mt-4">
-            <div class="col">
-              <img src="<?php echo get_template_directory_uri() ?>/img/logo-carroceros.png" alt="" class="img-fluid">
-            </div>
-          </div>
-          <div class="row row-cols-1 row-cols-md-2 mt-4">
-            <?php $carroceros = new WP_Query(array('category_name' => 'carroceros', 'posts_per_page' => 4, 'post__not_in' => $do_not_duplicate));
-            while ( $carroceros->have_posts() ) : $carroceros->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
-            <div class="col mb-4">
-              <div class="card border-0">
-                <a href="<?php the_permalink() ?>">
-                  <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
-                </a>
-                <div class="card-body px-0 bg-dark">
-                  <a href="<?php the_permalink() ?>">
-                    <h4 class="card-title text-white"><?php the_title() ?></h4>
-                  </a>
+              <div class="row row-cols-1 row-cols-md-2 mt-4">
+                <?php $categoryPosts = new WP_Query(array('category_name' => $category->slug, 'posts_per_page' => 4, 'post__not_in' => $do_not_duplicate));
+                while ( $categoryPosts->have_posts() ) : $categoryPosts->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
+                <div class="col mb-4">
+                  <div class="card border-0 bg-transparent">
+                    <a href="<?php the_permalink() ?>"><?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?></a>
+                    <div class="card-body px-0">
+                      <a href="<?php the_permalink() ?>">
+                        <h4 class="card-title <?php if($isDark) echo 'text-white' ?>"><?php the_title() ?></h4>
+                      </a>
+                    </div>
+                  </div>
                 </div>
+                <?php endwhile; wp_reset_postdata() ?>
               </div>
-            </div>
-            <?php endwhile; wp_reset_postdata() ?>
-          </div>
-        </section>
-        <section class="p-4">
-          <div class="row mt-4">
-            <div class="col">
-              <img src="<?php echo get_template_directory_uri() ?>/img/logo-sobre-marcha.png" alt="" class="imf-fluid">
-            </div>
-          </div>
-          <div class="row row-cols-1 row-cols-md-2 mt-4">
-            <?php $sobreLaMarcha = new WP_Query(array('category_name' => 'sobre-la-marcha', 'posts_per_page' => 4, 'post__not_in' => $do_not_duplicate));
-            while ( $sobreLaMarcha->have_posts() ) : $sobreLaMarcha->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
-            <div class="col mb-4">
-              <div class="card border-0">
-                <a href="<?php the_permalink() ?>"><?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?></a>
-                <div class="card-body px-0">
-                  <a href="<?php the_permalink() ?>">
-                    <h4 class="card-title"><?php the_title() ?></h4>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <?php endwhile; wp_reset_postdata() ?>
-          </div>
-        </section>
+            </section>
+          <?php $isDark = $isDark ? false : true;
+          endif;
+        endforeach ?>
       </div>
       <div class="col-md-4 pt-4">
         <?php if ( is_active_sidebar( 'custom-side-bar' ) ) : ?>

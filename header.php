@@ -9,10 +9,6 @@
     <?php wp_head(); ?>
   </head>
   <body>
-    <script>
-      myTheme = '<?php echo get_template_directory_uri() ?>';
-    </script>
-
     <?php $url = ''; if(!is_home()) $url = get_site_url(); ?>
 
     <div class="container-fluid mb-1" id="app">
