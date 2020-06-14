@@ -1,11 +1,18 @@
-<?php get_header(); ?>
+<?php get_header();
+
+$term = get_queried_object();
+$image = get_field('imagen', $term) ?>
 
 <div class="container">
-  <div class="row mt-4">
+  <div class="row mt-3">
     <div class="col-md-8">
-      <h1> <?php single_cat_title() ?> </h1>
+      <?php if(!empty($image['url'])): ?>
+        <img src="<?php echo $image['url']; ?>" alt="" class="img-fluid">
+      <?php else: ?>
+        <h1> <?php single_cat_title() ?> </h1>
+      <?php endif ?>
       <?php if (have_posts()) : ?>
-        <div class="row row-cols-1 row-cols-md-3 mt-4">
+        <div class="row row-cols-1 row-cols-md-3 mt-5">
           <?php while (have_posts()) : the_post(); ?>
             <div class="col mb-4">
               <div class="card">
