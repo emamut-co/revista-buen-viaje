@@ -16,13 +16,15 @@ $articuloCentralArray = new WP_Query(
 
 <section class="container p-4 bg-light">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8" id="main-note">
       <a href="<?php echo get_permalink($articuloCentralArray->posts[0]->ID) ?>">
         <h2 class="title"><?php echo $articuloCentralArray->posts[0]->post_title ?></h2>
       </a>
-      <a href="<?php echo get_permalink($articuloCentralArray->posts[0]->ID) ?>">
-        <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray->posts[0]->ID, 'full') ?>' class="img-fluid mt-2" alt='' />
-      </a>
+      <div class="text-center">
+        <a href="<?php echo get_permalink($articuloCentralArray->posts[0]->ID) ?>">
+          <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray->posts[0]->ID, 'full') ?>' class="img-fluid mt-2" alt='' />
+        </a>
+      </div>
       <p class="card-text mt-3">
         <small class="muted"><i class="far fa-clock"></i> Publicado: <?php echo date_i18n('d \d\e F Y g:i', strtotime($articuloCentralArray->posts[0]->post_date)) ?></small><br>
         <?php echo get_the_excerpt($articuloCentralArray->posts[0]->ID) ?></small></p>
@@ -34,12 +36,14 @@ $articuloCentralArray = new WP_Query(
       $articuloCentralArray->posts = array_values($articuloCentralArray->posts);
 
       while ( $articuloCentralArray->have_posts() ) : $articuloCentralArray->the_post(); $do_not_duplicate[] = get_the_ID(); ?>
-        <div class="mb-4">
-          <a href="<?php the_permalink() ?>">
-            <h5 class="title"><?php the_title(); $do_not_duplicate[] = get_the_ID() ?></h5>
+        <a href="<?php the_permalink() ?>">
+          <div class="card main-side border-0 mb-5">
+            <div class="card-body p-0">
+              <h5 class="card-title"><?php the_title(); $do_not_duplicate[] = get_the_ID() ?></h5>
+            </div>
             <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
-          </a>
-        </div>
+          </div>
+        </a>
       <?php endwhile ?>
     </div>
   </div>

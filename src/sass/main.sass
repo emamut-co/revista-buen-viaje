@@ -20,9 +20,6 @@ body
   color: #1A75BC !important
 
 .card
-  .card-img-top
-    max-height: 10rem
-    object-fit: cover
   .card-title
     color: #212529
 
@@ -30,6 +27,19 @@ a
   color: #212529
   &:hover
     color: #212529
+.card
+  .card-img-top
+    max-height: 10rem
+    object-fit: cover
+  &.main-side
+    .card-img-top
+      max-height: 13rem
+      object-fit: cover
+
+#main-note
+  img
+    max-height: 35rem
+    object-fit: cover
 
 .widget-content
   margin-bottom: 2.5rem
