@@ -137,3 +137,18 @@ function my_sidebar() {
   );
 }
 add_action( 'widgets_init', 'my_sidebar' );
+
+function config_custom_logo() {
+  add_theme_support( 'custom-logo' );
+}
+add_action( 'after_setup_theme' , 'config_custom_logo' );
+
+function theme_get_custom_logo() {
+  if ( has_custom_logo() ) {
+    $logo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ) , 'full' );
+
+    echo '<img class="img-fluid" id="logo" src="' . esc_url( $logo[0] ) . '" alt="' . get_bloginfo( 'name' ) . '">';
+  }
+  else
+    echo '<h1>' . get_bloginfo( 'name' ) . '</h1>';
+}
