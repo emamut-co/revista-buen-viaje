@@ -10,6 +10,7 @@
       <p class="mt-1">
         <!-- <span class="badge badge-primary">Ceda el paso</span> <span class="badge badge-warning">Chóferes</span><br> -->
         <p class="card-text"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php the_time('d \d\e F Y g:i'); ?></small><br>
+        Por: <?php the_author_posts_link() ?></p>
       </p>
       <?php the_content();?>
     </div>

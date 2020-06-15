@@ -34,11 +34,13 @@ $isDark = false ?>
       </div>
       <p class="card-text mt-3">
         <small class="muted"><i class="far fa-clock"></i> Publicado: <?php echo date_i18n('d \d\e F Y g:i', strtotime($articuloCentralArray->posts[0]->post_date)) ?></small><br>
-        <?php echo get_the_excerpt($articuloCentralArray->posts[0]->ID) ?></small></p>
+        Por: <a href="<?php echo esc_url(get_author_posts_url($articuloCentralArray->posts[0]->post_author)) ?>"><?php echo get_the_author_meta('display_name', $articuloCentralArray->posts[0]->post_author) ?></a>
+        <p>
+          <?php echo get_the_excerpt($articuloCentralArray->posts[0]->ID) ?></small>
+        </p>
       </p>
     </div>
     <div class="col-md-4">
-      <!-- <img src="<?php echo get_template_directory_uri() ?>/img/logo-articulo-central.png" alt="" class="img-fluid"> -->
       <?php unset($articuloCentralArray->posts[0]);
       $articuloCentralArray->posts = array_values($articuloCentralArray->posts);
 
