@@ -20,7 +20,7 @@ $args = array(
 );
 $categoriesArray = get_categories($args);
 $isDark = false;
-$mainTags = get_tags($articuloCentralArray->posts[0]->ID) ?>
+$mainTags = get_the_tags($articuloCentralArray->posts[0]->ID) ?>
 
 <section class="container p-4 bg-light">
   <div class="row">
