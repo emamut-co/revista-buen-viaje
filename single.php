@@ -8,9 +8,10 @@
       <h2 class="title"><?php the_title() ?></h2>
       <?php the_post_thumbnail('full', ['class' => 'img-fluid']) ?>
       <p class="mt-1">
-        <!-- <span class="badge badge-primary">Ceda el paso</span> <span class="badge badge-warning">Chóferes</span><br> -->
-        <p class="card-text"><small class="muted"><i class="far fa-clock"></i> Publicado: <?php the_time('d \d\e F Y g:i'); ?></small><br>
-        Por: <?php the_author_posts_link() ?></p>
+        <p class="card-text text-muted">
+          <i class="far fa-clock"></i> <?php the_time('d \d\e F Y g:i'); ?> por: <?php the_author_posts_link() ?><br>
+          <?php the_tags('', ' • ') ?>
+        </p>
       </p>
       <?php the_content();?>
     </div>

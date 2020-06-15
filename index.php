@@ -19,7 +19,8 @@ $args = array(
   'hide_empty' => 0
 );
 $categoriesArray = get_categories($args);
-$isDark = false ?>
+$isDark = false;
+$mainTags = get_tags($articuloCentralArray->posts[0]->ID) ?>
 
 <section class="container p-4 bg-light">
   <div class="row">
@@ -32,11 +33,15 @@ $isDark = false ?>
           <img src='<?php echo get_the_post_thumbnail_url($articuloCentralArray->posts[0]->ID, 'full') ?>' class="img-fluid mt-2" alt='' />
         </a>
       </div>
-      <p class="card-text mt-3">
-        <small class="muted"><i class="far fa-clock"></i> Publicado: <?php echo date_i18n('d \d\e F Y g:i', strtotime($articuloCentralArray->posts[0]->post_date)) ?></small><br>
-        Por: <a href="<?php echo esc_url(get_author_posts_url($articuloCentralArray->posts[0]->post_author)) ?>"><?php echo get_the_author_meta('display_name', $articuloCentralArray->posts[0]->post_author) ?></a>
+      <p class="card-text text-muted mt-3">
+        <i class="far fa-clock"></i> <?php echo date_i18n('d \d\e F Y g:i', strtotime($articuloCentralArray->posts[0]->post_date)) ?>
+        por: <a href="<?php echo esc_url(get_author_posts_url($articuloCentralArray->posts[0]->post_author)) ?>"><?php echo get_the_author_meta('display_name', $articuloCentralArray->posts[0]->post_author) ?></a><br>
+        <?php foreach ($mainTags as $key => $tag):
+          $tagLink = get_tag_link( $tag->term_id ); ?>
+          <a href="<?php echo $tagLink ?>"><?php echo $tag->name ?></a>&nbsp;&#9679;&nbsp;
+        <?php endforeach  ?>
         <p>
-          <?php echo get_the_excerpt($articuloCentralArray->posts[0]->ID) ?></small>
+          <?php echo get_the_excerpt($articuloCentralArray->posts[0]->ID) ?>
         </p>
       </p>
     </div>
