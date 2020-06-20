@@ -19,15 +19,17 @@ body
 .text-blue
   color: #1A75BC !important
 
-.card
-  .card-title
-    color: #212529
+.font-roboto
+  font-family: 'Roboto', sans-serif
 
 a
   color: #212529
   &:hover
     color: #212529
+
 .card
+  .card-title
+    color: #212529
   .card-img-top
     max-height: 10rem
     object-fit: cover
@@ -48,11 +50,21 @@ a
     font-weight: bold
     margin-bottom: 1rem
     padding-bottom: .5rem
-    border-bottom: 1px solid red
+    border-bottom: 1px solid #EF0004
   img
     display: block
     margin-left: auto
     margin-right: auto
+
+.pagination
+  .page-item
+    &.active
+      .page-link
+        background-color: #1A75BC
+        color: #FFF
+        border-color: #989898
+    .page-link
+      color: #303030
 
 footer
   h4
