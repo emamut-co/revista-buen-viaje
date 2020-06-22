@@ -1,9 +1,9 @@
       <footer>
-        <div class="row bg-secondary py-5">
+        <!-- <div class="row bg-secondary py-5">
           <div class="col text-center">
             <h3>Descarga nuestro PDF</h3>
           </div>
-        </div>
+        </div> -->
         <div class="row bg-dark py-5">
           <div class="col text-center">
             <h3 class="text-white"><strong>REVISTA BUEN VIAJE</strong></h3>
