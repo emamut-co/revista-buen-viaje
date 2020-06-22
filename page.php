@@ -7,7 +7,9 @@
     <div class="col-md-8">
       <h2 class="title"><?php the_title() ?></h2>
       <?php the_post_thumbnail('full', ['class' => 'img-fluid']) ?>
-      <?php get_template_part( 'template-parts/content', 'page' ); ?>
+      <div class="mt-4">
+        <?php the_content(); ?>
+      </div>
     </div>
     <div class="col-md-4">
       <?php if ( is_active_sidebar( 'custom-side-bar' ) ) : ?>

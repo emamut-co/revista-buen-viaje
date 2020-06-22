@@ -11,7 +11,7 @@
   <body>
     <?php $url = ''; if(!is_home()) $url = get_site_url(); ?>
 
-    <div class="container-fluid mb-1" id="app">
+    <div class="container-fluid" id="app">
     <?php include('menu.php') ?>
     <div class="row">
       <div class="container">
