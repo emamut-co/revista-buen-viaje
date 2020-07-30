@@ -62,6 +62,11 @@ $mainTags = get_the_tags($articuloCentralArray->posts[0]->ID) ?>
     </div>
   </div>
 </section>
+<div class="row mb-4">
+  <div class="col text-center">
+    <?php echo adrotate_ad(5); ?>
+  </div>
+</div>
 <div class="row">
   <div class="container">
     <div class="row">

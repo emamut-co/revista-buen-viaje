@@ -11,6 +11,11 @@ function my_theme_register_required_plugins()
       'name'      => 'Advanced Custom Fields',
       'slug'      => 'advanced-custom-fields',
       'required'  => true
+    ),
+    array(
+      'name'      => 'AdRotate',
+      'slug'      => 'adrotate',
+      'required'  => true
     )
 
   );
