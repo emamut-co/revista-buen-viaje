@@ -58,7 +58,13 @@ $mainTags = get_the_tags($articuloCentralArray->posts[0]->ID) ?>
             <?php the_post_thumbnail('medium', ['class' => 'card-img-top']) ?>
           </div>
         </a>
-      <?php endwhile ?>
+      <?php endwhile;
+      echo adrotate_ad(3) ?>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <?php echo do_shortcode('[adrotate banner="5"]') ?>
     </div>
   </div>
 </section>
