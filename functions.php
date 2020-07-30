@@ -1,8 +1,4 @@
 <?php
-require_once dirname( __FILE__ ) . '/helpers/TGM-Plugin-Activation-2.6.1/class-tgm-plugin-activation.php';
-
-require_once dirname( __FILE__ ) . '/helpers/required-plugins.php';
-
 add_theme_support( 'post-thumbnails' );
 
 function emamut_setup()
@@ -17,7 +13,7 @@ function add_theme_scripts()
   wp_enqueue_style('app', get_template_directory_uri() . '/dist/css/app.css');
 
   wp_enqueue_script('app.js', get_template_directory_uri() . '/dist/js/app.js', array (), 1.1, true);
-  wp_enqueue_script('helpers.js', get_template_directory_uri() . '/src/js/helpers.js', array (), 1.1, true);
+  wp_enqueue_script('helpers.js', get_template_directory_uri() . '/dist/js/helpers.js', array (), 1.1, true);
 }
 add_action( 'wp_enqueue_scripts', 'add_theme_scripts' );
 
@@ -25,10 +21,12 @@ register_nav_menus( array(
   'primary' => __( 'Primary Menu', 'emamut' ),
 ) );
 
-function register_navwalker(){
-	require_once get_template_directory() . '/helpers/class-wp-bootstrap-navwalker.php';
+function register_php_files(){
+  require_once get_template_directory() . '/helpers/class-wp-bootstrap-navwalker.php';
+  require_once dirname( __FILE__ ) . '/helpers/TGM-Plugin-Activation-2.6.1/class-tgm-plugin-activation.php';
+  require_once dirname( __FILE__ ) . '/helpers/required-plugins.php';
 }
-add_action( 'after_setup_theme', 'register_navwalker' );
+add_action( 'after_setup_theme', 'register_php_files' );
 
 add_filter('next_posts_link_attributes', 'posts_link_attributes');
 add_filter('previous_posts_link_attributes', 'posts_link_attributes');
