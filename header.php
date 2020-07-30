@@ -12,4 +12,4 @@
     <?php $url = ''; if(!is_home()) $url = get_site_url(); ?>
 
     <div class="container-fluid" id="app">
-      <?php include('menu.php') ?>
+      <?php get_template_part( 'partials/menu', 'template' ); ?>
