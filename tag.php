@@ -37,6 +37,11 @@ $image = get_field('imagen', $term); ?>
       <?php endif; ?>
     </div>
   </div>
+  <div class="row mb-4">
+    <div class="col text-center">
+      <?php echo adrotate_ad(5); ?>
+    </div>
+  </div>
 </div>
 
 <?php get_footer(); ?>

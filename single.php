@@ -13,7 +13,7 @@
           <?php the_tags('', ' • ') ?>
         </p>
       </p>
-      <?php the_content();?>
+      <?php the_content(); ?>
     </div>
     <div class="col-md-4">
       <?php if ( is_active_sidebar( 'custom-side-bar' ) ) : ?>
@@ -22,6 +22,11 @@
     </div>
     <?php endwhile; ?>
   <?php endif; ?>
+  </div>
+  <div class="row mb-4">
+    <div class="col text-center">
+      <?php echo adrotate_ad(5); ?>
+    </div>
   </div>
 </div>
 
